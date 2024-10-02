@@ -1,5 +1,5 @@
 import { useState } from "react";
-
+import { deposit } from "./transactionsSlice";
 import "./transactions.scss";
 
 /**
@@ -21,7 +21,12 @@ export default function Transactions() {
 
     const amount = +amountStr;
 
+    // <h1>{count}</h1>;
+
     // TODO: Dispatch the appropriate transaction action based on `action`
+  };
+  const handleDeposit = () => {
+    dispatch(deposit(amount));
   };
 
   return (
@@ -45,10 +50,10 @@ export default function Transactions() {
             />
           </label>
           <div>
-            <button default name="deposit">
-              Deposit
-            </button>
-            <button name="withdraw">Withdraw</button>
+            <button onClick={handleDeposit}>deposit2</button>
+            <button onClick={() => dispatch(deposit())}>Deposit</button>
+            <button onClick={() => dispatch(withdrawal())}>Withdrawal</button>
+            <button onClick={() => dispatch(transfer())}>Transfer</button>
           </div>
         </div>
         <div className="form-row">
@@ -56,7 +61,6 @@ export default function Transactions() {
             Transfer to
             <input type="text" placeholder="Recipient Name" name="recipient" />
           </label>
-          <button name="transfer">Transfer</button>
         </div>
       </form>
     </section>
